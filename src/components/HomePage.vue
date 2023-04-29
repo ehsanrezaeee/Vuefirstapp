@@ -137,5 +137,6 @@ nav li.active {
 
 .content {
   padding: 20px;
+  /* align-items: center; */
 }
 </style>
