@@ -10,7 +10,7 @@
           v-model="username"
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit">{{ $t("buttons.login") }}</button>
       </form>
     </div>
     <div v-if="loggedIn" class="welcome-message">
@@ -18,7 +18,7 @@
         <div class="logo">Ehsan's First App</div>
         <div class="navbar-buttons">
           <button class="navbar-buttons" v-if="loggedIn" @click="logout">
-            Logout
+            {{ $t("buttons.logout") }}
           </button>
         </div>
       </nav>

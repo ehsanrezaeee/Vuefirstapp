@@ -9,8 +9,21 @@
     <ul class="todo-list">
       <li v-for="(todo, index) in todos" :key="index">
         <div class="todo-item">
-          <input class="todo-checkbox" type="checkbox" v-model="todo.done" />
-          <span :class="{ done: todo.done }">{{ todo.text }}</span>
+          <!-- <input class="todo-checkbox" type="checkbox" v-model="todo.done" /> -->
+          <span
+            :class="{ done: todo.done, editable: !todo.editing }"
+            @click="editTodo(index)"
+            v-if="!todo.editing"
+            >{{ todo.text }}</span
+          >
+          <input
+            class="todo-edit-input"
+            type="text"
+            v-model="todo.text"
+            v-if="todo.editing"
+            @blur="saveTodo"
+            @keyup.enter="saveTodo"
+          />
           <button class="todo-remove-btn" @click="removeTodo(index)">
             Remove
           </button>
@@ -26,15 +39,15 @@ import { ref } from "vue";
 export default {
   setup() {
     const todos = ref([
-      // { text: "Learn Vue 3", done: false },
-      // { text: "Build an app", done: false },
-      // { text: "Deploy to production", done: false },
+      //   { text: "Learn Vue 3", done: false, editing: false },
+      //   { text: "Build an app", done: false, editing: false },
+      //   { text: "Deploy to production", done: false, editing: false },
     ]);
 
     const newTodo = ref("");
 
     function addTodo() {
-      todos.value.push({ text: newTodo.value, done: false });
+      todos.value.push({ text: newTodo.value, done: false, editing: false });
       newTodo.value = "";
     }
 
@@ -42,17 +55,36 @@ export default {
       todos.value.splice(index, 1);
     }
 
+    function editTodo(index) {
+      todos.value[index].editing = true;
+      setTimeout(() => {
+        const input = document.querySelector(
+          `.todo-list li:nth-child(${index + 1}) input`
+        );
+        if (input) {
+          input.focus();
+          input.select();
+        }
+      });
+    }
+
+    function saveTodo() {
+      todos.value.forEach((todo) => (todo.editing = false));
+    }
+
     return {
       todos,
       newTodo,
       addTodo,
       removeTodo,
+      editTodo,
+      saveTodo,
     };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .todo-container {
   max-width: 600px;
   margin: 0 auto;
@@ -76,8 +108,9 @@ export default {
 .todo-input {
   flex: 1;
   padding: 0.5rem;
-  border: none;
+  /* border: none; */
   border-radius: 0.25rem;
+  border-style: solid;
   font-size: 1rem;
 }
 
@@ -111,7 +144,6 @@ export default {
 
 .todo-checkbox {
   margin-right: 0.5rem;
-  text-decoration: line-through;
 }
 
 .todo-text {
@@ -124,8 +156,20 @@ export default {
   text-decoration: line-through;
 }
 
+.todo-text.editable {
+  cursor: pointer;
+}
+
+.todo-edit-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
 .todo-remove-btn {
-  margin-left: auto;
+  margin-left: 1rem;
   padding: 0.5rem;
   border: none;
   border-radius: 0.25rem;
@@ -134,5 +178,9 @@ export default {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+}
+
+.todo-remove-btn:hover {
+  background-color: #c82333;
 }
 </style>

@@ -5,6 +5,16 @@ import { createI18n } from "vue-i18n";
 const app = createApp(App);
 const messages = {
   en: {
+    buttons: {
+      login: "Login",
+      logout: "Logout",
+    },
+    tabs: {
+      dashboard: "Dashboard",
+      todos: "Todos",
+      weather: "Weather",
+      profile: "Profile",
+    },
     profile: {
       title: "Profile",
       nameLabel: "Name",
@@ -24,6 +34,16 @@ const messages = {
     },
   },
   fa: {
+    buttons: {
+      login: "ورود",
+      logout: "خروج",
+    },
+    tabs: {
+      dashboard: "داشبورد",
+      todos: "لیست کارها",
+      weather: "آب و هوا",
+      profile: "پروفایل",
+    },
     profile: {
       title: "پروفایل",
       nameLabel: "نام",

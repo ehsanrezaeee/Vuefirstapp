@@ -1,30 +1,30 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{ backgroundColor: bgColor }">
     <nav>
       <ul>
         <li
           @click="activeTab = 'Dashboard'"
           :class="{ active: activeTab === 'Dashboard' }"
         >
-          Dashboard
+          {{ $t("tabs.dashboard") }}
         </li>
         <li
           @click="activeTab = 'Todos'"
           :class="{ active: activeTab === 'Todos' }"
         >
-          Todos
+          {{ $t("tabs.todos") }}
         </li>
         <li
           @click="activeTab = 'Weather'"
           :class="{ active: activeTab === 'Weather' }"
         >
-          Weather
+          {{ $t("tabs.weather") }}
         </li>
         <li
           @click="activeTab = 'Profile'"
           :class="{ active: activeTab === 'Profile' }"
         >
-          Profile
+          {{ $t("tabs.profile") }}
         </li>
       </ul>
     </nav>
@@ -37,12 +37,13 @@
       </div>
 
       <div v-if="activeTab === 'Todos'">
-        <TodoList2 />
+        <TodoList3 />
         <!-- Your todos content here -->
       </div>
 
       <div v-if="activeTab === 'Weather'">
-        <twoApi />
+        <!-- <twoApi /> -->
+        <TwoApiNew />
         <!-- Your weather content here -->
       </div>
 
@@ -56,14 +57,18 @@
 
 <script>
 import axios from "axios";
-import TodoList2 from "./TodoList2.vue";
-import twoApi from "./temperature/twoApi.vue";
+// import TodoList2 from "./TodoList2.vue";
+// import twoApi from "./temperature/twoApi.vue";
 import ProfilePage from "./../components/profilePage/ProfilePage.vue";
+import TodoList3 from "./TodoList3.vue";
+import TwoApiNew from "./TwoApiNew.vue";
 export default {
   components: {
-    TodoList2,
-    twoApi,
+    // TodoList2,
+    TodoList3,
+    // twoApi,
     ProfilePage,
+    TwoApiNew,
   },
   data() {
     return {
@@ -71,6 +76,7 @@ export default {
       welcomeMessage: "",
       quote: "",
       currentTime: "",
+      bgColor: localStorage.getItem("bgColor") || "white",
     };
   },
   mounted() {
