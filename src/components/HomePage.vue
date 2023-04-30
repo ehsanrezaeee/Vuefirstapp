@@ -136,7 +136,11 @@ nav li.active {
 }
 
 .content {
-  padding: 20px;
-  /* align-items: center; */
+  padding: 2rem;
+  display: flexbox;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>
