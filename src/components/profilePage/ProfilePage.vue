@@ -1,21 +1,35 @@
 <template>
-  <div :style="{ backgroundColor: bgColor }">
-    <!-- <h1>{{ $t("profile.title") }}</h1> -->
+  <div class="container" :style="{ backgroundColor: bgColor }">
+    <!-- <h1 class="title">{{ $t("profile.title") }}</h1> -->
     <form @submit.prevent="saveName">
-      <label>{{ $t("profile.nameLabel") }}</label>
-      <input type="text" v-model="name" />
-      <button type="submit">{{ $t("profile.saveButton") }}</button>
+      <div class="form-group">
+        <label for="name">{{ $t("profile.nameLabel") }}</label>
+        <input type="text" id="name" v-model="name" class="form-control" />
+      </div>
+      <button type="submit" class="btn btn-primary">
+        {{ $t("profile.saveButton") }}
+      </button>
     </form>
-    <div>
-      <label>{{ $t("profile.languageLabel") }}</label>
-      <select v-model="language" @change="changeLanguage">
+    <div class="form-group">
+      <label for="language">{{ $t("profile.languageLabel") }}</label>
+      <select
+        id="language"
+        v-model="language"
+        @change="changeLanguage"
+        class="form-control"
+      >
         <option value="en">{{ $t("languages.english") }}</option>
         <option value="fa">{{ $t("languages.farsi") }}</option>
       </select>
     </div>
-    <div>
-      <label>{{ $t("profile.backgroundColorLabel") }}</label>
-      <select v-model="bgColor" @change="changeBgColor">
+    <div class="form-group">
+      <label for="bgColor">{{ $t("profile.backgroundColorLabel") }}</label>
+      <select
+        id="bgColor"
+        v-model="bgColor"
+        @change="changeBgColor"
+        class="form-control"
+      >
         <option value="white">{{ $t("colors.white") }}</option>
         <option value="lightgray">{{ $t("colors.lightgray") }}</option>
         <option value="lightblue">{{ $t("colors.lightblue") }}</option>
@@ -57,36 +71,30 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
+<style scoped>
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-h1 {
+.title {
   font-size: 32px;
   margin-top: 0;
 }
 
-form {
+.form-group {
   margin-bottom: 20px;
 }
 
 label {
+  margin: 1rem;
   display: block;
   font-size: 18px;
   margin-bottom: 5px;
 }
 
-input[type="text"],
-select {
+.form-control {
   padding: 5px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -96,24 +104,26 @@ select {
   margin-bottom: 10px;
 }
 
-button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
+.btn {
   padding: 10px 20px;
-  border: none;
   border-radius: 5px;
-  cursor: pointer;
   font-size: 16px;
 }
 
+.btn-primary {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 select {
-  width: 200px;
+  width: 100%;
 }
 
 option {
   padding: 5px;
   font-size: 16px;
-  border-radius: 5px;
 }
 
 option:hover {

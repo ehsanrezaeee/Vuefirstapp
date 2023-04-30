@@ -174,7 +174,7 @@ export default {
 }
 
 .todo-remove-btn {
-  margin-left: 1rem;
+  margin: 1rem;
   padding: 0.5rem;
   border: none;
   border-radius: 0.25rem;
