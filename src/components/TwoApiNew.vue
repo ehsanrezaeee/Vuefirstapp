@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <button @click="searchCity">Search</button>
+    <button @click="searchCity">{{ $t("buttons.search") }}</button>
     <div v-if="result" class="city-details">
       <h2>{{ result.city }}</h2>
       <p>Latitude: {{ result.lat }}</p>

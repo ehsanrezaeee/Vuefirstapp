@@ -4,7 +4,7 @@
     <form class="todo-form" @submit.prevent="addTodo">
       <label class="todo-label" for="todo">Add a new todo:</label>
       <input class="todo-input" type="text" id="todo" v-model="newTodo" />
-      <button class="todo-button" type="submit">Add</button>
+      <button class="todo-button" type="submit">{{ $t("buttons.add") }}</button>
     </form>
     <ul class="todo-list">
       <li v-for="(todo, index) in todos" :key="index">
@@ -25,7 +25,7 @@
             @keyup.enter="saveTodo"
           />
           <button class="todo-remove-btn" @click="removeTodo(index)">
-            Remove
+            {{ $t("buttons.remove") }}
           </button>
         </div>
       </li>
