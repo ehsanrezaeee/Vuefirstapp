@@ -1,36 +1,41 @@
 <template>
-  <div class="todo-container">
-    <h1 class="todo-title">Todo List</h1>
-    <form class="todo-form" @submit.prevent="addTodo">
-      <label class="todo-label" for="todo">Add a new todo:</label>
-      <input class="todo-input" type="text" id="todo" v-model="newTodo" />
-      <button class="todo-button" type="submit">{{ $t("buttons.add") }}</button>
-    </form>
-    <ul class="todo-list">
-      <li v-for="(todo, index) in todos" :key="index">
-        <div class="todo-item">
-          <!-- <input class="todo-checkbox" type="checkbox" v-model="todo.done" /> -->
+  <v-container class="todo-container">
+    <h1 class="todo-title">{{ $t("todo.title") }}</h1>
+    <v-form class="todo-form" @submit.prevent="addTodo">
+      <v-label class="todo-label" for="todo">{{ $t("todo.addLabel") }}</v-label>
+      <v-text-field
+        class="todo-input"
+        type="text"
+        id="todo"
+        v-model="newTodo"
+      ></v-text-field>
+      <v-btn class="todo-button" type="submit">{{ $t("buttons.add") }}</v-btn>
+    </v-form>
+    <v-list class="todo-list">
+      <v-list-item v-for="(todo, index) in todos" :key="index">
+        <v-list-item-content class="todo-item">
+          <!-- <v-checkbox class="todo-checkbox" v-model="todo.done"></v-checkbox> -->
           <span
             :class="{ done: todo.done, editable: !todo.editing }"
             @click="editTodo(index)"
             v-if="!todo.editing"
             >{{ todo.text }}</span
           >
-          <input
+          <v-text-field
             class="todo-edit-input"
             type="text"
             v-model="todo.text"
             v-if="todo.editing"
             @blur="saveTodo"
             @keyup.enter="saveTodo"
-          />
-          <button class="todo-remove-btn" @click="removeTodo(index)">
-            {{ $t("buttons.remove") }}
-          </button>
-        </div>
-      </li>
-    </ul>
-  </div>
+          ></v-text-field>
+          <v-btn class="todo-remove-btn" @click="removeTodo(index)">{{
+            $t("buttons.remove")
+          }}</v-btn>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-container>
 </template>
 
 <script>

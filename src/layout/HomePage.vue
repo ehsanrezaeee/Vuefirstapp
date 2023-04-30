@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :style="{ backgroundColor: bgColor }">
+  <div class="wrapper" :style="{ backgroundColor: bgColor }" :dir="dir">
     <nav>
       <ul>
         <li
@@ -31,44 +31,38 @@
 
     <div class="content">
       <div v-if="activeTab === 'Dashboard'">
-        <h1>{{ welcomeMessage }}</h1>
-        <div class="quote">{{ quote }}</div>
-        <h2>{{ currentTime }}</h2>
+        <welcomeMessage />
       </div>
 
       <div v-if="activeTab === 'Todos'">
-        <TodoList3 />
-        <!-- Your todos content here -->
+        <TodoList />
       </div>
 
       <div v-if="activeTab === 'Weather'">
-        <!-- <twoApi /> -->
         <TwoApiNew />
-        <!-- Your weather content here -->
       </div>
 
       <div v-if="activeTab === 'Profile'">
-        <ProfilePage />
-        <!-- Your profile content here -->
+        <ProfilePage
+          @bg-color-changed="handleBgColorChanged"
+          @dir-changed="updateDir"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-// import TodoList2 from "./TodoList2.vue";
-// import twoApi from "./temperature/twoApi.vue";
+import welcomeMessage from "./../components/welcomeMessagePage/welcomeMessage.vue";
 import ProfilePage from "./../components/profilePage/ProfilePage.vue";
-import TodoList3 from "./TodoList3.vue";
-import TwoApiNew from "./TwoApiNew.vue";
+import TodoList from "./../components/todoPage/TodoList.vue";
+import TwoApiNew from "./../components/weatherPage/TwoApiNew.vue";
 export default {
   components: {
-    // TodoList2,
-    TodoList3,
-    // twoApi,
+    TodoList,
     ProfilePage,
     TwoApiNew,
+    welcomeMessage,
   },
   data() {
     return {
@@ -77,23 +71,16 @@ export default {
       quote: "",
       currentTime: "",
       bgColor: localStorage.getItem("bgColor") || "white",
+      dir: "ltr",
     };
   },
-  mounted() {
-    const username = localStorage.getItem("username");
-    if (username) {
-      this.welcomeMessage = `Welcome , ${username}!`;
-    }
-
-    axios
-      .get("https://api.quotable.io/random")
-      .then((response) => {
-        this.quote = response.data.content + " - " + response.data.author;
-        this.currentTime = new Date().toLocaleTimeString();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  methods: {
+    updateDir(dir) {
+      this.dir = dir;
+    },
+    handleBgColorChanged(newBgColor) {
+      this.bgColor = newBgColor; // Store the new bgColor value
+    },
   },
 };
 </script>

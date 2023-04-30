@@ -1,6 +1,6 @@
 <template>
   <div :style="{ backgroundColor: bgColor }">
-    <h1>{{ $t("profile.title") }}</h1>
+    <!-- <h1>{{ $t("profile.title") }}</h1> -->
     <form @submit.prevent="saveName">
       <label>{{ $t("profile.nameLabel") }}</label>
       <input type="text" v-model="name" />
@@ -40,10 +40,18 @@ export default {
     },
     changeLanguage() {
       localStorage.setItem("language", this.language);
-      location.reload();
+      localStorage.setItem("dir", this.dir);
+      this.$i18n.locale = this.language;
+      this.$emit("dir-changed", this.dir);
     },
     changeBgColor() {
       localStorage.setItem("bgColor", this.bgColor);
+      this.$emit("bg-color-changed", this.bgColor);
+    },
+  },
+  computed: {
+    dir() {
+      return this.language === "fa" ? "rtl" : "ltr";
     },
   },
 };

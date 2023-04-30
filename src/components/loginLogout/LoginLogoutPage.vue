@@ -14,25 +14,19 @@
       </form>
     </div>
     <div v-if="loggedIn" class="welcome-message">
-      <nav class="navbar">
-        <div class="logo">Ehsan's First App</div>
-        <div class="navbar-buttons">
-          <button class="navbar-buttons" v-if="loggedIn" @click="logout">
-            {{ $t("buttons.logout") }}
-          </button>
-        </div>
-      </nav>
-      <HomePage />
+      <navBar />
+      <HomePage2 />
     </div>
   </div>
 </template>
 
 <script>
-import HomePage from "../HomePage.vue";
-
+import HomePage2 from "@/layout/HomePage2.vue";
+import navBar from "@/layout/navBar.vue";
 export default {
   components: {
-    HomePage,
+    HomePage2,
+    navBar,
   },
   data() {
     return {
@@ -131,6 +125,7 @@ button:hover {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  width: 100vw;
 }
 .welcome {
   font-size: 36px;

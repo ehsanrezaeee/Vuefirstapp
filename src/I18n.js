@@ -1,5 +1,9 @@
 export const messages = {
   en: {
+    todo: {
+      title: "To do",
+      addLabel: "add some activity",
+    },
     buttons: {
       login: "Login",
       logout: "Logout",
@@ -12,6 +16,7 @@ export const messages = {
       todos: "Todos",
       weather: "Weather",
       profile: "Profile",
+      title: "Page",
     },
     profile: {
       title: "Profile",
@@ -32,6 +37,10 @@ export const messages = {
     },
   },
   fa: {
+    todo: {
+      title: "کار مورد نظر",
+      addLabel: "فعالیت",
+    },
     buttons: {
       login: "ورود",
       logout: "خروج",
@@ -44,6 +53,7 @@ export const messages = {
       todos: "لیست کارها",
       weather: "آب و هوا",
       profile: "پروفایل",
+      title: "صفحه",
     },
     profile: {
       title: "پروفایل",

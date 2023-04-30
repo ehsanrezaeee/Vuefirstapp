@@ -1,14 +1,14 @@
 <template>
   <div>
-    <LoginLogout2 />
+    <LoginLogoutPage />
   </div>
 </template>
 
 <script>
-import LoginLogout2 from "./components/loginLogout/LoginLogout2.vue";
+import LoginLogoutPage from "./components/loginLogout/LoginLogoutPage.vue";
 export default {
   components: {
-    LoginLogout2,
+    LoginLogoutPage,
   },
 };
 </script>
@@ -97,9 +97,3 @@ img {
   height: auto;
 }
 </style>
-
-<head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
-</head>
