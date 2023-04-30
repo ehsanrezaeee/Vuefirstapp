@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <div class="logo">Ehsan's First App</div>
+    <div class="logo">Logo</div>
     <div class="navbar-buttons">
       <button class="navbar-buttons" v-if="loggedIn" @click="logout">
         {{ $t("buttons.logout") }}
@@ -34,14 +34,14 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #65028f;
+  background-color: #47047b;
   color: white;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1;
-  height: 5rem;
+  height: 6rem;
 }
 
 .logo {

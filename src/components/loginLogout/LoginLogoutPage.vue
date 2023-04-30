@@ -85,19 +85,6 @@ input {
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
-.navbar {
-  display: flexbox;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #333;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-  height: 6.5rem;
-}
 
 .logo {
   font-size: 2rem;

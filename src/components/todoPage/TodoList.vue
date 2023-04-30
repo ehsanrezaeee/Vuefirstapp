@@ -124,7 +124,7 @@ export default {
   padding: 0.5rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #007aff;
+  background-color: #4caf50;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
